@@ -49,6 +49,26 @@ namespace ATMApp.UI
             Environment.Exit(1);
         }
 
+        internal static void ShowMenu()
+        {
+            Console.WriteLine("-----------ATM Menu ----------");
+            Console.WriteLine("0. Account Balance : ");
+            Console.WriteLine("1. Cash Deposit    : ");
+            Console.WriteLine("2. Cash Withdrawal : ");
+            Console.WriteLine("3. Transfer        : ");
+            Console.WriteLine("4. Transactions    : ");
+            Console.WriteLine("5. Logout          : ");
+        }
+
+
+        internal static void LogoutProgress()
+        {
+            Console.WriteLine(" Bye bye bye ");
+            Console.Clear();
+        }
+
+
+
 
 
 

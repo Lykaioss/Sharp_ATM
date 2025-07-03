@@ -14,6 +14,8 @@ namespace ATMApp.App
         {
             CheckUserCardNumPass();
             WelcomeCust();
+            Appscreen.ShowMenu();
+            ProcessMenuOption();
 
         }
 
@@ -88,11 +90,43 @@ namespace ATMApp.App
             }
         }
 
+        
+
             public void WelcomeCust()
         {
             Console.WriteLine($"Welcome back {selectedAccounts.FullName}  ");
         }
 
+
+        private void ProcessMenuOption()
+        {
+            switch(Validator.Convert<int>("an option: "))
+            {
+                case (int)AppMenu.CheckBalance:
+                    Console.WriteLine("Checking account balance ..");
+                    break;
+                case (int)AppMenu.PlaceDeposit:
+                    Console.WriteLine(" Make Deposits  ..");
+                    break;
+                case (int)AppMenu.MakeWithdrawals:
+                    Console.WriteLine(" Extracting Money ..");
+                    break;
+                case (int)AppMenu.Internal_Transfer:
+                    Console.WriteLine("Making internal transfer ..");
+                    break;
+                case (int)AppMenu.ViewTransaction:
+                    Console.WriteLine("Checking account balance ..");
+                    break;
+                case (int)AppMenu.Logout:
+                    Appscreen.LogoutProgress();
+                    Utility.printMessage("you have succsully logged out , colect your ATM card ", true);
+                    break;
+                default:
+                    Console.WriteLine("default action ...");
+                    break;
+                
+            }
+        }
 
     }
 

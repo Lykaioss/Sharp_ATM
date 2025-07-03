@@ -12,3 +12,4 @@ C:\Users\Adcunha\source\repos\ATMApp\ATMApp\obj\Debug\net8.0\refint\ATMApp.dll
 C:\Users\Adcunha\source\repos\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.pdb
 C:\Users\Adcunha\source\repos\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.genruntimeconfig.cache
 C:\Users\Adcunha\source\repos\ATMApp\ATMApp\obj\Debug\net8.0\ref\ATMApp.dll
+C:\Users\Adcunha\source\repos\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.sourcelink.json
