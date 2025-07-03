@@ -5,7 +5,7 @@ using System;
 
 namespace ATMApp.App
 {
-    public class ATM : IUserLogin
+    public class ATM : IUserLogin , IUserAcountActions
     {
         private List<UserAccount>? userAccountLists;
         private UserAccount selectedAccounts;
@@ -14,8 +14,13 @@ namespace ATMApp.App
         {
             CheckUserCardNumPass();
             WelcomeCust();
-            Appscreen.ShowMenu();
-            ProcessMenuOption();
+
+            
+                Appscreen.ShowMenu();
+                ProcessMenuOption();
+            
+
+            
 
         }
 
@@ -30,6 +35,8 @@ namespace ATMApp.App
             ];
 
         }
+
+
 
         public void CheckUserCardNumPass()
         {
@@ -100,34 +107,74 @@ namespace ATMApp.App
 
         private void ProcessMenuOption()
         {
-            switch(Validator.Convert<int>("an option: "))
-            {
-                case (int)AppMenu.CheckBalance:
-                    Console.WriteLine("Checking account balance ..");
-                    break;
-                case (int)AppMenu.PlaceDeposit:
-                    Console.WriteLine(" Make Deposits  ..");
-                    break;
-                case (int)AppMenu.MakeWithdrawals:
-                    Console.WriteLine(" Extracting Money ..");
-                    break;
-                case (int)AppMenu.Internal_Transfer:
-                    Console.WriteLine("Making internal transfer ..");
-                    break;
-                case (int)AppMenu.ViewTransaction:
-                    Console.WriteLine("Checking account balance ..");
-                    break;
-                case (int)AppMenu.Logout:
-                    Appscreen.LogoutProgress();
-                    Utility.printMessage("you have succsully logged out , colect your ATM card ", true);
-                    break;
-                default:
-                    Console.WriteLine("default action ...");
-                    break;
-                
+            bool flag = true;
+            while (flag) {
+                switch (Validator.Convert<int>("an option: "))
+                {
+                    case (int)AppMenu.CheckBalance:
+                        Console.WriteLine("Checking account balance ..");
+                        CheckBalance();
+                        break;
+                    case (int)AppMenu.PlaceDeposit:
+                        Console.WriteLine(" Make Deposits  ..");
+                        PlaceDeposit();
+                        break;
+                    case (int)AppMenu.MakeWithdrawals:
+                        Console.WriteLine(" Extracting Money ..");
+                        MakeWithdrawals();
+                        break;
+                    case (int)AppMenu.Internal_Transfer:
+                        Console.WriteLine("Making internal transfer ..");
+                        //var internalTransfer = Appscreen.InternalTransferForm();
+                        break;
+                    case (int)AppMenu.Logout:
+                        Appscreen.LogoutProgress();
+                        flag = false;
+                        Utility.printMessage("you have succsully logged out , colect your ATM card ", true);
+
+                        break;
+                    default:
+                        Console.WriteLine("default action ...");
+                        break;
+
+                }
             }
+
+            
         }
 
+        public void CheckBalance()
+        {
+            Utility.printMessage($" Your Account Balance is  :  { selectedAccounts.AccountBalance }  Rupees ", true);
+        }
+
+        public void PlaceDeposit()
+        {
+            Console.WriteLine("Lets get that money ready , enter the amount you want to deposit ");
+            decimal trans_amt = decimal.Parse(Console.ReadLine());
+            selectedAccounts.AccountBalance += trans_amt;
+            Console.WriteLine($"Money deposited , your current balnce is {selectedAccounts.AccountBalance} Rupees ");
+        }
+
+        public void MakeWithdrawals()
+        {
+            Console.WriteLine(" Enter the amount you want to WithDraw ");
+            decimal withdrawal_amt = decimal.Parse(Console.ReadLine());
+            selectedAccounts.AccountBalance -= withdrawal_amt;
+            Console.WriteLine($"Money deposited , your current balnce is {selectedAccounts.AccountBalance} Rupees ");
+
+        }
+
+        private void ProcessInternalTransfer(InternalTransfer internalTransfer)
+        {
+            selectedAccounts.AccountBalance -= internalTransfer.TransferAmount;
+            internalTransfer.ReciepeintBankAccNum += (long)internalTransfer.TransferAmount;
+            Console.WriteLine("You have successfully transferred the amount ");
+
+            Console.WriteLine($" Your account blance : {selectedAccounts.AccountBalance} ");
+            
+
+        }
     }
 
 }

@@ -89,5 +89,10 @@ namespace ATMApp.UI
             Console.ReadLine();
 
         }
+
+        public static string FormatAmount(decimal amt)
+        {
+            return String.Format("₹", "{0:C2}", amt);
+        }
     }
 }

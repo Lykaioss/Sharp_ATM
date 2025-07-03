@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATMApp.UI
 {
-    internal static  class Appscreen
+    internal   class Appscreen
     {
 
         internal static void Welcome()
@@ -56,15 +56,26 @@ namespace ATMApp.UI
             Console.WriteLine("1. Cash Deposit    : ");
             Console.WriteLine("2. Cash Withdrawal : ");
             Console.WriteLine("3. Transfer        : ");
-            Console.WriteLine("4. Transactions    : ");
-            Console.WriteLine("5. Logout          : ");
+            Console.WriteLine("4. Logout          : ");
         }
 
 
         internal static void LogoutProgress()
         {
             Console.WriteLine(" Bye bye bye ");
-            Console.Clear();
+            
+            //Console.Clear();
+        }
+
+        internal InternalTransfer InternalTransferForm()
+        {
+            var internalTransfer = new InternalTransfer();
+            internalTransfer.ReciepeintBankAccNum = Validator.Convert<long>("recipient's account number ");
+            internalTransfer.TransferAmount = Validator.Convert<decimal>(" Enter amount to be sent to the reciepient ");
+            return internalTransfer;
+
+
+
         }
 
 

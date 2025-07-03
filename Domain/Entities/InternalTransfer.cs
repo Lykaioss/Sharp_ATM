@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace ATMApp.Domain.Entities
 {
-    public enum AppMenu
+    internal class InternalTransfer
     {
-        CheckBalance,
-        PlaceDeposit,
-        MakeWithdrawals,
-        Internal_Transfer,
-        Logout
+        public decimal TransferAmount { get; set; }
+        public long ReciepeintBankAccNum { get; set; }
+
 
     }
 }
